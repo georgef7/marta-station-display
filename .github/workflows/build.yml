@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: ./dist
+          path: marta-station-display/dist
 
   deploy:
     # deploy only when merging to main
