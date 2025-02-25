@@ -1,11 +1,13 @@
 {
   "name": "marta-api-proxy",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.ts",
   "scripts": {
     "dev": "ts-node index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "vercel-build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +18,10 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5"
   }
 }
