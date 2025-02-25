@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import { TrainArrival } from '../types/MartaTrainDef'
+import { TrainArrival } from '../types/MartaTrainDef';
 
 // Load environment variables
 dotenv.config();
@@ -23,6 +22,7 @@ app.get('/api/traindata', async (req: Request, res: Response) => {
 
         const apiUrl = `https://developerservices.itsmarta.com:18096/itsmarta/railrealtimearrivals/developerservices/traindata?apiKey=${apiKey}`;
 
+        const fetch = (await import('node-fetch')).default;
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`API request failed with status ${response.status}`);
