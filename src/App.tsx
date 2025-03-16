@@ -32,7 +32,7 @@ function App() {
         setApiKey(event.target.value); // Update state on input change
     };
 
-    let apiUrl = `https://marta-train-go-pyjud6h28-georgef7s-projects.vercel.app/`;    
+    let apiUrl = `marta-train-go-api.vercel.app`;    
 
     useEffect(() => {
         if (inDev) {
