@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { TrainArrival } from '../types/MartaTrainDef';
 import { TextField } from '@mui/material';
-import demoData from './assets/DemoData.json'
+//import demoData from './assets/DemoData.json'
 
 
 function App() {
@@ -32,11 +32,14 @@ function App() {
         setApiKey(event.target.value); // Update state on input change
     };
 
+    let apiUrl = `https://marta-train-go-pyjud6h28-georgef7s-projects.vercel.app/`;    
 
     useEffect(() => {
         if (inDev) {
-            const apiUrl = `${baseURL}/itsmarta/railrealtimearrivals/developerservices/traindata?apiKey=${apiKey}`;
-            console.log('API Request:', apiUrl);
+            apiUrl = `${baseURL}/itsmarta/railrealtimearrivals/developerservices/traindata?apiKey=${apiKey}`;
+        }
+        console.log('API Request:', apiUrl);
+            
             // Make the fetch request
             fetch(apiUrl)
                 .then((response) => {
@@ -53,9 +56,11 @@ function App() {
                 .catch((error) => {
                     console.log(error)
                 });
-        } else {
-            setArrivalData(demoData as TrainArrival[])
-        }
+        
+        
+        //else {
+        //     setArrivalData(demoData as TrainArrival[])
+        // }
     }, [count]);
 
     useEffect(() => {
@@ -74,7 +79,7 @@ function App() {
             <TextField id="outlined-basic" label="Enter API Key" variant="outlined" onChange={handleChange} />
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
+                    Refresh # {count}
                 </button>
                 <p>
                     Work in Progress!
