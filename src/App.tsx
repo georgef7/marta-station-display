@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { TrainArrival } from '../types/MartaTrainDef';
-import { TextField } from '@mui/material';
-//import demoData from './assets/DemoData.json'
-
 
 function App() {
     const [count, setCount] = useState(0)
@@ -27,14 +24,11 @@ function App() {
         }
     }, []);
 
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setApiKey(event.target.value); // Update state on input change
-    };
-
+    // production backend
     let apiUrl = `https://marta-train-go-api.vercel.app/`;    
 
     useEffect(() => {
+        // via proxy
         if (inDev) {
             apiUrl = `${baseURL}/itsmarta/railrealtimearrivals/developerservices/traindata?apiKey=${apiKey}`;
         }
@@ -56,11 +50,7 @@ function App() {
                 .catch((error) => {
                     console.log(error)
                 });
-        
-        
-        //else {
-        //     setArrivalData(demoData as TrainArrival[])
-        // }
+
     }, [count]);
 
     useEffect(() => {
@@ -74,9 +64,9 @@ function App() {
 
     return (
         <>
-            <h1>The ATL MARTA AVIS Display, George's Version.</h1>
+            <h2>The ATL MARTA AVIS Display, George's Version.</h2>
             <p>Note that this is not endorsed or affiliated with MARTA in any way. This project uses the publicly available MARTA Train API.</p>
-            <TextField id="outlined-basic" label="Enter API Key" variant="outlined" onChange={handleChange} />
+            
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
                     Refresh # {count}
@@ -85,17 +75,12 @@ function App() {
                     Work in Progress!
                 </p>
             </div>
-            <p className="read-the-docs">
-                This project is created with Vite and uses React. Click on the Vite and React logos to learn more
-            </p>
             Welcome to Lindbergh Station. Train Arrivals:
             {filteredArrivalData?.map(train => (
                 <div key={train.TRAIN_ID}>
                     {train.LINE} Line Train {train.TRAIN_ID} heading {train.DIRECTION} to {train.DESTINATION} will arrive in {train.WAITING_TIME}
                 </div>
             ))}
-            {inDev ? 'Live Data' : 'Viewing demo data for now due to CORS restrictions as this is in production environment.'}
-
 
         </>
     )
