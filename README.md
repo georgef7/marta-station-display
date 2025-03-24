@@ -6,7 +6,7 @@ This is a personal project of George F.
 
 This project is not endorsed or affliated with MARTA in any way.
 
-Currently, it is hardcoded to only display arrival information from Lindbergh Station. Selectable stations will be coming soon.
+This project is still under development, and the UI is not yet finalized.
 
 The front end is created with vite and uses React Typescript, deployed using GitHub Pages.
 
