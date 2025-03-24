@@ -3,6 +3,7 @@ export interface Station {
     stationName: string
 };
 
+// List of all MARTA Rail Stations
 export const MARTAStations: Station[] = [
     { value: 'AIRPORT STATION', stationName: 'Airport' },
     { value: 'ARTS CENTER STATION', stationName: 'Arts center' },

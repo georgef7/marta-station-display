@@ -22,7 +22,7 @@ function App() {
         if (inDev) {
             console.log('Init setting up...')
             setApiKey(API_KEY);
-            
+
         }
         setInitSuccess(true)
     }, []);
@@ -109,12 +109,12 @@ function App() {
 
                 </Box>
 
-                <Box sx={{ position: 'absolute', bottom: 0}}>
-                <Typography sx={{padding: 1.5}}>
+                <Box sx={{ position: 'absolute', bottom: 0 }}>
+                    <Typography sx={{ padding: 1.5 }}>
                         AVIS stands for Audio Visual Information System.
                     </Typography>
-                    <Typography variant='body2' sx={{padding: 1.5}}>
-                        Note that this is not endorsed or affiliated with MARTA in any way. 
+                    <Typography variant='body2' sx={{ padding: 1.5 }}>
+                        Note that this is not endorsed or affiliated with MARTA in any way.
                         This project uses the publicly available MARTA Train API.
                     </Typography>
                 </Box>
@@ -129,18 +129,20 @@ function App() {
                     Work in Progress!
                 </p>
             </div>
-            
-            Welcome to {getStationName(selectedStation)} Station. Train Arrivals: 
+
+            Welcome to {getStationName(selectedStation)} Station. Train Arrivals:
             {filteredArrivalData.length > 0 && filteredArrivalData?.map(train => (
                 <div key={train.TRAIN_ID}>
                     {train.LINE} Line Train {train.TRAIN_ID} heading {train.DIRECTION} to {train.DESTINATION} will arrive in {train.WAITING_TIME}
                 </div>
             ))}
-            {filteredArrivalData.length === 0 && 
-            <>
-                No arrival information. Try a different station.
-                This could be due to no upcoming trains or is outside of MARTA's operating hours.
-            </>}
+
+            {filteredArrivalData.length === 0 &&
+                <>
+                    No arrival information. Try a different station.
+                    This could be due to no upcoming trains or is outside of MARTA's operating hours.
+                </>
+            }
 
         </>
     )
