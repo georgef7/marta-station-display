@@ -38,7 +38,7 @@ export const MARTAStations: Station[] = [
     { value: 'NORTH SPRINGS STATION', stationName: 'North Springs' },
     { value: 'OAKLAND CITY STATION', stationName: 'Oakland City' },
     { value: 'PEACHTREE CENTER STATION', stationName: 'Peachtree Center' },
-    { value: 'SANDY SPRINGS STATION', stationName: 'Sandy Pprings' },
+    { value: 'SANDY SPRINGS STATION', stationName: 'Sandy Springs' },
     { value: 'VINE CITY STATION', stationName: 'Vine City' },
     { value: 'WEST END STATION', stationName: 'West End' },
     { value: 'WEST LAKE STATION', stationName: 'West Lake' }
