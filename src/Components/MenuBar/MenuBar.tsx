@@ -54,7 +54,7 @@ export default function MenuBar(props: MenuBarProps) {
                     <Typography variant='h5'
                         sx={{
                             right: '1%',
-                            position: 'fixed',
+                            position: 'absolute',
                             display: { xs: 'none', md: 'block' }
                         }}>
                         {currentTime}
