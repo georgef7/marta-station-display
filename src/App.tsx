@@ -28,7 +28,7 @@ function App() {
     const inDev = import.meta.env.DEV;
 
     const [initSuccess, setInitSuccess] = useState<boolean>(false);
-    const [count, setCount] = useState(0);
+    //const [count, setCount] = useState(0);
     const [showRealTimeArrivalOnly, setShowRealTimeArrivalOnly] =
         useState<boolean>(true);
     const [arrivalData, setArrivalData] = useState<TrainArrival[]>([]);
@@ -84,7 +84,7 @@ function App() {
 
         // fetch on load
         fetchArrivalTimes();
-        
+
         // auto fetch every 15 sec
         const fetchInterval = setInterval(fetchArrivalTimes, 15000);
 
@@ -188,7 +188,7 @@ function App() {
     const handleStationChange = (event: SelectChangeEvent) => {
         console.log(event.target.value);
         if (event !== undefined) setSelectedStation(event.target.value);
-        setCount((count) => count + 1);
+        //setCount((count) => count + 1);
     };
 
     function getStationName(value: string): string {
