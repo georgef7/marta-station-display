@@ -1,7 +1,7 @@
 export interface Station {
-    value: string,
-    stationName: string
-};
+    value: string;
+    stationName: string;
+}
 
 // List of all MARTA Rail Stations
 export const MARTAStations: Station[] = [
@@ -41,5 +41,18 @@ export const MARTAStations: Station[] = [
     { value: 'SANDY SPRINGS STATION', stationName: 'Sandy Springs' },
     { value: 'VINE CITY STATION', stationName: 'Vine City' },
     { value: 'WEST END STATION', stationName: 'West End' },
-    { value: 'WEST LAKE STATION', stationName: 'West Lake' }
-]
+    { value: 'WEST LAKE STATION', stationName: 'West Lake' },
+];
+
+// translation with help of ChatGPT and some research on local usage
+// duration is the amount of time to show the translation
+// duration is longer for primary/secondary languages
+export const ArrivingTranslation = [
+    { lang: 'English', text: 'Arriving', duration: 5500 },
+    { lang: 'Spanish', text: 'Llegando', duration: 3500 },
+    { lang: 'Korean', text: '곧 도착', duration: 2500 },
+    { lang: 'Chinese', text: '即將抵達', duration: 2500 },
+    { lang: 'French', text: 'Arrivée', duration: 2500 },
+    { lang: 'Japanese', text: 'まもなく、電車が参ります', duration: 2500 },
+    { lang: 'Vietnamese', text: 'Đang đến', duration: 2500 },
+];
