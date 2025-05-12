@@ -3,16 +3,6 @@ import './App.css';
 import { TrainArrival } from '../types/MartaTrainDef';
 import {
     Box,
-    Button,
-    Checkbox,
-    Divider,
-    Drawer,
-    FormControl,
-    FormControlLabel,
-    InputLabel,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
     Typography,
     useTheme,
 } from '@mui/material';
@@ -22,6 +12,7 @@ import {
     MARTAStations,
 } from '../types/MartaTrainStations';
 import { useMediaQuery } from '@mui/system';
+import ConfigPanel from './Components/ConfigPanel/ConfigPanel';
 
 function App() {
     let API_KEY = import.meta.env.VITE_MARTA_API_KEY;
@@ -33,9 +24,7 @@ function App() {
         useState<boolean>(true);
     const [arrivalData, setArrivalData] = useState<TrainArrival[]>([]);
     const [apiKey, setApiKey] = useState<string>('');
-    const [filteredArrivalData, setFilteredArrivalData] = useState<
-        TrainArrival[]
-    >([]);
+    const [filteredArrivalData, setFilteredArrivalData] = useState<TrainArrival[]>([]);
     const [openConfig, setOpenConfig] = useState<boolean>(true);
     const [selectedStation, setSelectedStation] = useState<string>('');
     const [languageIndex, setLanguageIndex] = useState<number>(0);
@@ -185,12 +174,6 @@ function App() {
         setLanguageIndex(0);
     }, [!trainArriving]);
 
-    const handleStationChange = (event: SelectChangeEvent) => {
-        console.log(event.target.value);
-        if (event !== undefined) setSelectedStation(event.target.value);
-        //setCount((count) => count + 1);
-    };
-
     function getStationName(value: string): string {
         const stationProperty = MARTAStations.find(
             (station) => value === station.value
@@ -205,102 +188,12 @@ function App() {
         return eta;
     }
 
-    const handleShowRealTimeChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setShowRealTimeArrivalOnly(event.target.checked);
-    };
-
     return (
         <Box sx={{ overflow: 'auto', height: '100vh' }}>
             <MenuBar openSettings={setOpenConfig} />
-            <Drawer open={openConfig}>
-                <Box
-                    sx={{
-                        padding: 1.5,
-                        gap: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        maxWidth: 350,
-                    }}
-                >
-                    <Box>
-                        <Typography variant="h4">MARTA AVIS Display</Typography>
-                        <Typography variant="body1">
-                            George's Version
-                        </Typography>
-                    </Box>
-                    <Divider />
-                    <Box>
-                        <Typography variant="h5">Config Settings</Typography>
-                        <FormControl sx={{ m: 1, minWidth: 200 }}>
-                            <InputLabel id="station-select-autowidth-label">
-                                Station
-                            </InputLabel>
-                            <Select
-                                labelId="station-select-autowidth-label"
-                                id="station-select-autowidth"
-                                value={selectedStation}
-                                onChange={handleStationChange}
-                                autoWidth
-                                label="Station"
-                            >
-                                {MARTAStations.map((station) => (
-                                    <MenuItem
-                                        key={station.value}
-                                        value={station.value}
-                                    >
-                                        {station.stationName}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={showRealTimeArrivalOnly}
-                                    onChange={handleShowRealTimeChange}
-                                />
-                            }
-                            label="Show Real Time Arrivals Only"
-                        />
-                    </Box>
-                    <Button
-                        variant="contained"
-                        onClick={() => setOpenConfig(false)}
-                        disabled={selectedStation === ''}
-                    >
-                        See Arrival Times!
-                    </Button>
-                    {isMobileDevice ? (
-                        <Typography variant="body2">
-                            Small screen detected. Simulator mode is off. To use
-                            simulator mode, open on a larger screen.
-                        </Typography>
-                    ) : (
-                        <Typography variant="body2">
-                            Large screen detected. Simulator mode is on. Click
-                            on header bar to open up this config menu again.
-                        </Typography>
-                    )}
-                </Box>
-
-                <Box sx={{ position: 'absolute', bottom: 0 }}>
-                    <Typography sx={{ padding: 1.5 }}>
-                        AVIS stands for Audio Visual Information System.
-                    </Typography>
-                    <Typography variant="body2" sx={{ padding: 1.5 }}>
-                        Note: The MARTA API will sometimes respond with incomplete data.
-                        If data is unavailable for a station/line, please try a different station
-                        or try again later.
-                    </Typography>
-                    <Typography variant="body2" sx={{ padding: 1.5 }}>
-                        Note that this is not endorsed or affiliated with MARTA
-                        in any way. This project uses the publicly available
-                        MARTA Train API.
-                    </Typography>
-                </Box>
-            </Drawer>
+            <ConfigPanel openConfig={openConfig} selectedStation={selectedStation} setSelectedStation={setSelectedStation}
+                showRealTimeArrivalOnly={showRealTimeArrivalOnly} setShowRealTimeArrivalOnly={setShowRealTimeArrivalOnly}
+                setOpenConfig={setOpenConfig}/>
             <div className="card">
                 {/* <Button
                     variant='contained'
@@ -328,7 +221,7 @@ function App() {
                             },
                             position: 'relative',
                             flexDirection: 'column',
-                            height: '20%',
+                            height: { xs: '10%', md: '20%' },
                             justifyContent: 'center',
                         }}
                     >
